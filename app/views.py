@@ -11,6 +11,7 @@ from models import User, Post
 @app.before_request
 def before_request():
     g.user = current_user
+    
 
 @app.route('/')
 def startPage():
@@ -40,6 +41,8 @@ def index():
         return render_template("index.html",
                                user=user,
                                posts=posts)
+
+
 @app.route('/posts')
 def posts():
     if 'email' not in session:
@@ -52,6 +55,7 @@ def posts():
                            user=user,
                            posts=posts)
 
+
 @app.route('/delete/<int:id>')
 @login_required
 def delete(id):
@@ -63,6 +67,7 @@ def delete(id):
     db.session.commit()
     flash('Your post has been deleted.')
     return redirect(url_for('index'))
+
 
 @app.route('/user/<login>')
 @login_required
