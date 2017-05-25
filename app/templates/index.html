@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('static/img/home-bg2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Hello! {{user.login}}</h1>
+                        <hr class="small">
+                        <span class="subheading">Welcome home</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+ <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <form method="POST" class="form-group">
+                    <p>Want to note something? Just do it!</p>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label for="inputTitle">Great title</label>
+                            <input id="inputTitle" name="inputTitle" class="form-control" placeholder="Great title"  required data-validation-required-message="Please enter title.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label for="inputText">Important text</label>
+                            <textarea id="inputText" rows="5" name="inputText" class="form-control" placeholder="Important text"  required data-validation-required-message="Please enter text."></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <div id="success"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-default">Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
