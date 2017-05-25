@@ -1,3 +1,4 @@
 .pyc
-.idea
+/.idea
 .db
+/db_repository
