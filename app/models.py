@@ -5,7 +5,6 @@ from datetime import datetime
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -14,8 +13,7 @@ class User(db.Model):
     email = db.Column(db.String(64), index=True, unique=True)
     name = db.Column(db.String(16))
     surname = db.Column(db.String(16))
-    #posts = db.relationship('Post', backref='author', lazy='dynamic')
-
+    
     def is_active(self):
         return True
 
@@ -39,7 +37,6 @@ class User(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
     def __repr__(self):
         return '<User %r>' % (self.login)
 
@@ -52,19 +49,11 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, title, text, user_id, timestamp):  # pragma: no cover
+    def __init__(self, title, text, user_id, timestamp):
         self.title = title
         self.text = text
         self.user_id = user_id
         self.timestamp = timestamp
-
-    #def get_id(self):
-      #try:
-            #return unicode(self.id)  # python 2
-        #except NameError:
-            #return str(self.id)  # python 3
-
-
 
     def __repr__(self):
         return '<Post %r>' % (self.title)
