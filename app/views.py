@@ -69,6 +69,25 @@ def delete(id):
     return redirect(url_for('index'))
 
 
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    if 'email' not in session:
+        return render_template('first_page.html')
+    else:
+        user = g.user
+        post1 = Post.query.get(id)
+        if request.method == "POST":
+            post = Post.query.filter_by(id=id).update(dict(title=request.form['inputTitle'],text=request.form['inputText'],timestamp = datetime.utcnow()))
+            db.session.commit()
+            flash('Entry was successfully edited.')
+            return redirect(url_for('posts'))
+        return render_template('edit.html',
+                               id=id,
+                               user=user,
+                               post1=post1)
+
+
 @app.route('/user/<login>')
 @login_required
 def user(login, page=1):
