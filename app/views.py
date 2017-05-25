@@ -20,14 +20,6 @@ def startPage():
 @app.route('/index/<int:page>', methods=['GET', 'POST'])
 @login_required
 def index():
-
-        #return render_template("index.html",
-                               #title=title,
-                               #text=text)
-
-        #new_post1 = models.Post(title='Hi', text="World")
-        #db.session.add(new_post1)
-        #db.session.commit()
     if 'email' not in session:
         return render_template('first_page.html')
     else:
@@ -37,7 +29,7 @@ def index():
         if request.method == "POST":
             title = request.form['inputTitle']
             text = request.form['inputText']
-            #user_id = user.get_id
+            user_id = user.id
             new_entry = Post(title=title,
                              text=text,
                              user_id=user_id,
@@ -144,9 +136,3 @@ def logout():
     logout_user()
     flash('You have been logged out!')
     return redirect(url_for('login'))
-
-
-
-
-
-
