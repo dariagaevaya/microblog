@@ -7,14 +7,6 @@ from wtforms.validators import DataRequired, Email, Length, Regexp, EqualTo
 from models import User
 
 
-
-
-
-class PostForm(Form):
-    title = StringField('title', validators=[DataRequired()])
-    text = StringField('text', validators=[DataRequired()])
-    submit = SubmitField('Post')
-
 class SearchForm(Form):
     search = StringField('search', validators=[DataRequired()])
 
